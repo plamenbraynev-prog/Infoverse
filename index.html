@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Infoverse | Universe of Information</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+    background: radial-gradient(circle at center, #0a0a2a, #000010);
+    overflow-x: hidden;
+  }
+
+  /* === Galaxy Background === */
+  #galaxy {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 50%, #050517, #000010);
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite ease-in-out;
+    opacity: 0.8;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* === Navigation Bar === */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    z-index: 1000;
+  }
+  nav h1 {
+    font-size: 1.4em;
+    background: linear-gradient(90deg, #00d4ff, #8a2be2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+  }
+  nav a {
+    color: #00d4ff;
+    margin-left: 20px;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  nav a:hover {
+    color: #fff;
+  }
+
+  /* === Header === */
+  header {
+    text-align: center;
+    padding: 120px 20px 40px;
+  }
+  header h2 {
+    font-weight: 300;
+    font-size: 1.2em;
+    color: #cfcff0;
+  }
+
+  /* === Trending Section === */
+  #trending {
+    text-align: center;
+    margin: 40px auto;
+    max-width: 800px;
+  }
+  #trending h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #00d4ff;
+  }
+  .trend {
+    background: rgba(255,255,255,0.05);
+    margin: 10px auto;
+    border-radius: 10px;
+    padding: 15px;
+    max-width: 600px;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .trend:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-3px);
+  }
+
+  /* === Articles === */
+  main {
+    text-align: center;
+    padding: 20px;
+  }
+  .article {
+    margin: 30px auto;
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  .article:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .article h3 {
+    color: #00d4ff;
+  }
+
+  /* === Footer === */
+  footer {
+    text-align: center;
+    padding: 40px 0;
+    background: rgba(255, 255, 255, 0.05);
+    margin-top: 60px;
+    font-size: 0.9em;
+  }
+  footer span {
+    color: #00d4ff;
+  }
+
+  /* === Responsive === */
+  @media (max-width: 600px) {
+    nav h1 { font-size: 1.1em; }
+    nav a { margin-left: 10px; font-size: 0.9em; }
+    header h2 { font-size: 1em; }
+  }
+</style>
+</head>
+<body>
+<div id="galaxy"></div>
+
+<nav>
+  <h1>Infoverse</h1>
+  <div>
+    <a href="#trending">Trending</a>
+    <a href="#articles">Articles</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header>
+  <h2>Universe of Information! Everything, all the time, at one place.</h2>
+</header>
+
+<section id="trending">
+  <h3>🔥 Today’s Trending Topics</h3>
+  <div id="trend-list">
+    <!-- Topics will be inserted by JS -->
+  </div>
+</section>
+
+<main id="articles">
+  <div class="article">
+    <h3>Artificial Intelligence Revolution</h3>
+    <p>AI is transforming every aspect of life — from creative industries to science and global communication. Discover how automation and intelligence are shaping our universe of information.</p>
+  </div>
+  <div class="article">
+    <h3>Exploring the Digital Cosmos</h3>
+    <p>The Internet is like a living galaxy — constantly expanding, connecting billions of minds and ideas. Explore the trends that power the next generation of discovery.</p>
+  </div>
+  <div class="article">
+    <h3>Future of Human Knowledge</h3>
+    <p>From quantum computing to neural interfaces, humanity is on the brink of a new era of learning. Infoverse connects it all in one place — simple, smart, and fast.</p>
+  </div>
+</main>
+
+<footer id="contact">
+  © <span>Infoverse</span> 2025 | Universe of Information
+</footer>
+
+<script>
+  // === Create animated galaxy ===
+  const galaxy = document.getElementById('galaxy');
+  for (let i = 0; i < 150; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 3;
+    s.style.width = s.style.height = size + 'px';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.animationDelay = Math.random() * 2 + 's';
+    galaxy.appendChild(s);
+  }
+
+  // === Auto-update Trending Topics ===
+  const topics = [
+    "AI breakthroughs in 2025",
+    "SpaceX’s next-generation rockets",
+    "Rise of sustainable energy tech",
+    "Quantum computing revolution",
+    "Virtual reality shaping education",
+    "Future of work with automation",
+    "The return of space exploration",
+    "New wave of biotech innovation"
+  ];
+  const today = new Date();
+  const randomTopics = [];
+  for (let i = 0; i < 3; i++) {
+    const randomIndex = (today.getDate() + i * 3) % topics.length;
+    randomTopics.push(topics[randomIndex]);
+  }
+
+  const trendList = document.getElementById("trend-list");
+  randomTopics.forEach(topic => {
+    const t = document.createElement("div");
+    t.className = "trend";
+    t.textContent = topic;
+    trendList.appendChild(t);
+  });
+</script>
+</body>
+</html>
